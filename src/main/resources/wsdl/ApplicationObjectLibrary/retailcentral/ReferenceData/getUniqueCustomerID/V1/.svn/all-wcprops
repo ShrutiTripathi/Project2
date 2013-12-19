@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 175
+/projects/ott/!svn/ver/9598/trunk/socrates/socrates-customerid-service-unit/src/main/resources/wsdl/ApplicationObjectLibrary/retailcentral/ReferenceData/getUniqueCustomerID/V1
+END
+getUniqueCustomerID.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 199
+/projects/ott/!svn/ver/9598/trunk/socrates/socrates-customerid-service-unit/src/main/resources/wsdl/ApplicationObjectLibrary/retailcentral/ReferenceData/getUniqueCustomerID/V1/getUniqueCustomerID.xsd
+END

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/xsd/validateAddress/V1"
+            targetNamespace="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/xsd/validateAddress/V1"
+            xmlns:tns="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/xsd/validateAddress/V1"
+            xmlns:common="http://retailcentral.specsavers.com/objectLibrary/Common/V1"
+            elementFormDefault="qualified">            
+  <xsd:import schemaLocation="../../../Common/V1/CommonEntity.xsd"
+              namespace="http://retailcentral.specsavers.com/objectLibrary/Common/V1"/>
+              <!--  -->
+  <!--
+  Validate Address Request
+  -->
+  <xsd:complexType name="ValidateAddressRequestType">
+    <xsd:sequence>
+      <xsd:element name="zipCode" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ValidateAddressRequest"
+               type="ValidateAddressRequestType"/>
+  <!--
+  Validate Address Response
+  -->
+  <xsd:complexType name="ValidateAddressResponseType">
+    <xsd:complexContent>
+      <xsd:extension base="common:AbstractResponseType">
+        <xsd:sequence>
+          <xsd:element name="Result" minOccurs="0">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="town" type="xsd:string"/>
+                <xsd:element name="zipCode" type="xsd:string"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ValidateAddressResponse"
+               type="tns:ValidateAddressResponseType"/>
+</xsd:schema>

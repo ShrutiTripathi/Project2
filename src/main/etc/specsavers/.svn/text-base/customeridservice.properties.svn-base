@@ -1,0 +1,25 @@
+### CONFIGURATION FOR CUSTOMER_ID_WINDOW GENERATION VIA WEBSERVICE CALL ###
+
+
+#Frequency (in ms) to call call the webservice
+kickOffPeriod=60000
+
+#Web service related settings
+webserviceurl=http://localhost:8080/forme/services/CustomerIDPort
+serviceclass=v1.retailservice.custids.CustomerID
+wsdlurl=wsdl/CustomerID.wsdl
+wsdltargetns=http://CustIds.retailservice.v1/
+operationName=getCustomerIds
+
+#Webservice Input Parameter
+storeNumber=5656
+count=50
+
+
+#Database Configuration
+url=jdbc:mysql://localhost:3306/soa
+user=root
+password=mysql
+
+#Threshold Configuration
+threshholdValue=150

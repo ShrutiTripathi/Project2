@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://retailcentral.specsavers.com/objectLibrary/Common/V1"
+            targetNamespace="http://retailcentral.specsavers.com/objectLibrary/Common/V1"
+            xmlns:tns="http://retailcentral.specsavers.com/objectLibrary/Common/V1"
+            elementFormDefault="qualified">
+    <xsd:complexType name="AbstractResponseType" abstract="true">
+        <xsd:sequence>
+            <xsd:element name="ResultStatus">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="code" type="xsd:string"/>
+                        <xsd:element name="summary" type="xsd:string"
+                                     minOccurs="0"/>
+                        <xsd:element name="message" type="xsd:string"
+                                     minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+   
+    <xsd:complexType name="DayType">
+        <xsd:sequence>
+            <xsd:element name="date" type="xsd:date"/>
+            <xsd:element name="startTime" type="xsd:int" minOccurs="0"/>
+            <xsd:element name="endTime" type="xsd:int" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Day" type="tns:DayType"/>
+    
+   <!--  -->
+   
+    <xsd:complexType name="IdentifierType">
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="name" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:simpleContent>
+                        <xsd:extension base="xsd:string">
+                            <xsd:attribute name="Language" type="xsd:string"/>
+                        </xsd:extension>
+                    </xsd:simpleContent>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="contextId" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:simpleContent>
+                        <xsd:extension base="xsd:string">
+                            <xsd:attribute name="Context" type="xsd:string"/>
+                        </xsd:extension>
+                    </xsd:simpleContent>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Identifier" type="tns:IdentifierType"/>
+    
+  
+   
+    <xsd:complexType name="PersonType">
+        <xsd:sequence>
+            <xsd:element name="Identifier" type="IdentifierType" minOccurs="0"/>
+            <xsd:element name="firstName" type="xsd:string"/>
+            <xsd:element name="lastName" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Person" type="tns:PersonType"/>
+    
+
+   
+    <xsd:complexType name="CustomerType">
+        <xsd:sequence>
+            <xsd:element name="Identifier" type="IdentifierType" minOccurs="0"/>
+            <xsd:element name="title" type="xsd:string" minOccurs="0"
+                         maxOccurs="1"/>
+            <xsd:element name="firstName" type="xsd:string"/>
+            <xsd:element name="lastName" type="xsd:string"/>
+            <xsd:element name="cprNumber" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="gender" type="xsd:string"/>
+            <xsd:element name="emailAddress" minOccurs="1" type="xsd:string"/>
+            <xsd:element name="dateOfBirth" type="xsd:date" minOccurs="0"/>
+            <xsd:element name="parentCPR" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Address" type="AddressType"/>
+            <xsd:element name="ContactDetail" type="ContactDetailType"
+                         minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="lastModifiedDate" type="xsd:dateTime"
+                         minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Customer" type="tns:CustomerType"/>
+    
+
+   
+    <xsd:complexType name="StaffType">
+        <xsd:sequence>
+            <xsd:element name="Identifier" type="IdentifierType" minOccurs="0"/>
+            <xsd:element name="firstName" type="xsd:string"/>
+            <xsd:element name="lastName" type="xsd:string"/>
+            <xsd:element name="cprNumber" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Staff" type="tns:StaffType"/>
+    
+    <xsd:element name="Title" type="IdentifierType"/>
+    
+ 
+   
+    <xsd:complexType name="DateRangeType">
+        <xsd:sequence>
+            <xsd:element name="startDate" type="xsd:dateTime"/>
+            <xsd:element name="endDate" type="xsd:dateTime"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="DateRange" type="tns:DateRangeType"/>
+
+   
+    <xsd:complexType name="AddressType">
+        <xsd:sequence>
+            <xsd:element name="addressLine1" type="xsd:string"/>
+            <xsd:element name="addressLine2" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="district" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="town" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="county" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="postCode" type="xsd:string"/>
+            <xsd:element name="country" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Address" type="tns:AddressType"/>
+    
+  
+   
+    <xsd:complexType name="ContactDetailType">
+        <xsd:sequence>
+            <xsd:element name="stdCode" minOccurs="0" type="xsd:string"/>
+            <xsd:element name="phoneNumber" type="xsd:string"/>
+            <xsd:element name="preferred" type="xsd:boolean"/>
+            <xsd:element name="contactType" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ContactDetail" type="tns:ContactDetailType"/>
+    
+   
+   
+    <xsd:complexType name="NoteType">
+        <xsd:sequence>
+            <xsd:element name="author" type="xsd:string"/>
+            <xsd:element name="note" type="xsd:string"/>
+            <xsd:element name="time" type="xsd:dateTime"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Note" type="tns:NoteType"/>
+    <xsd:complexType name="StoreType">
+        <xsd:sequence>
+            <xsd:element ref="tns:Identifier"/>
+            <xsd:element name="companyName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="status" type="xsd:string" minOccurs="0"/>
+            <xsd:element ref="tns:Address" minOccurs="0"/>
+            <xsd:element name="regNumber" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="telephone" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="fax" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="giro" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="seNumber" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Store" type="tns:StoreType"/>
+    
+   
+    <xsd:complexType name="WeekNumberType">
+        <xsd:attribute name="year" type="xsd:unsignedInt"/>
+        <xsd:attribute name="startDate" type="xsd:date"/>
+        <xsd:attribute name="endDate" type="xsd:date"/>
+    </xsd:complexType>
+    <xsd:element name="WeekNumber" type="tns:WeekNumberType"/>
+    
+
+    <xsd:element name="BookingType" type="tns:IdentifierType"/>
+    
+   
+    <xsd:element name="SlotType" type="tns:IdentifierType"/>
+    
+   
+    <xsd:element name="BlockedDay" type="tns:DayType"/>
+    <xsd:element name="TradingDay" type="tns:DayType"/>
+    
+   
+    <xsd:element name="customerNumber" type="xsd:string"></xsd:element>
+    
+   
+   
+    <xsd:element name="storeNumber" type="xsd:string"></xsd:element>
+    
+    <xsd:complexType name="BlockedDaysType">
+        <xsd:sequence>
+            <xsd:element ref="tns:Day" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="BlockedDays" type="tns:BlockedDaysType"/>
+    <xsd:complexType name="TradingDaysType">
+        <xsd:sequence>
+            <xsd:element ref="tns:Day" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="TradingDays" type="tns:TradingDaysType"/> 
+</xsd:schema>

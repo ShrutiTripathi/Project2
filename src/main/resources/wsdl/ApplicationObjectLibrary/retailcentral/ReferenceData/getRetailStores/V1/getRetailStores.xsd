@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/xsd/getRetailStores/V1"
+            targetNamespace="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/xsd/getRetailStores/V1"
+            xmlns:tns="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/xsd/getRetailStores/V1"
+            xmlns:common="http://retailcentral.specsavers.com/objectLibrary/Common/V1"
+            xmlns:comrefdata="http://retailcentral.specsavers.com/objectLibrary/Common/ReferenceData/V1"
+            elementFormDefault="qualified">
+            
+  <xsd:import schemaLocation="../../../Common/V1/CommonEntity.xsd"
+              namespace="http://retailcentral.specsavers.com/objectLibrary/Common/V1"/>
+              <!--  -->
+  <!--
+  Get Retail Stores Request
+  -->
+  <xsd:complexType name="GetRetailStoresRequestType">
+    <xsd:sequence>
+      <xsd:element name="countryID" type="xsd:unsignedInt"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="GetRetailStoresRequest" type="GetRetailStoresRequestType"/>
+  <!--
+  Get Retail Stores Response
+  -->
+  <xsd:complexType name="GetRetailStoresResponseType">
+    <xsd:complexContent>
+      <xsd:extension base="common:AbstractResponseType">
+        <xsd:sequence>
+          <xsd:element name="Result" minOccurs="0">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="count" type="xsd:unsignedInt"/>
+                <xsd:element name="Store" type="common:StoreType"
+                             minOccurs="0" maxOccurs="unbounded"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="GetRetailStoresResponse"
+               type="tns:GetRetailStoresResponseType"/>
+</xsd:schema>

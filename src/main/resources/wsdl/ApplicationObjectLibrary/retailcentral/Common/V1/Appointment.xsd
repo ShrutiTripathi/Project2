@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://retailcentral.specsavers.com/objectLibrary/Appointment/V1"
+            targetNamespace="http://retailcentral.specsavers.com/objectLibrary/Appointment/V1"
+            xmlns:tns="http://retailcentral.specsavers.com/objectLibrary/Appointment/V1"
+            xmlns:common="http://retailcentral.specsavers.com/objectLibrary/Common/V1"
+            elementFormDefault="qualified">
+    <!-- why xmlns is pointing to Appointment namespace: remove it if not needed-->
+    <xsd:import namespace="http://retailcentral.specsavers.com/objectLibrary/Common/V1"
+              schemaLocation="CommonEntity.xsd"/>
+<!--  -->
+    <!--
+    Appointment Type
+    -->
+    <xsd:complexType name="AppointmentTypeType">
+        <xsd:sequence>
+            <xsd:element ref="common:Identifier"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="AppointmentType" type="tns:AppointmentTypeType"/>
+    <!--
+    Appointment
+    -->
+    <xsd:complexType name="AppointmentType">
+        <xsd:sequence>
+            <xsd:element ref="common:Identifier" minOccurs="0"/>
+            <xsd:element name="appointmentTypeCode" type="xsd:string"/>
+            <xsd:element name="startTime" type="xsd:dateTime"/>
+            <xsd:element name="startTimeinSec" type="xsd:int"/>
+            <xsd:element name="duration" type="xsd:int"/>
+            <xsd:element name="status" type="xsd:string" minOccurs="0"/>
+            <xsd:element ref="common:Customer"/>
+            <xsd:element ref="common:Staff" minOccurs="0"/>
+            <xsd:element name="BookedByStaff" type="common:StaffType"/>
+            <xsd:element name="bookedByTime" type="xsd:dateTime"/>
+            <xsd:element name="bookingSource" type="xsd:string"/>
+            <xsd:element ref="common:Note" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Appointment" type="tns:AppointmentType"/>
+    <!--
+    Room
+    -->
+    <xsd:complexType name="RoomType">
+        <xsd:sequence>
+            <xsd:element ref="common:Identifier"/>
+            <xsd:element name="appointmentTypeCode" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="common:BlockedDay" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="tns:Slot" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Room" type="tns:RoomType"/>
+    <!--
+    Slot
+    -->
+    <xsd:complexType name="SlotType">
+        <xsd:sequence>
+            <xsd:element ref="common:Identifier" minOccurs="0"/>
+            <xsd:element name="type" type="xsd:string"/>
+            <xsd:element name="appointmentTypeCode" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="startTime" type="xsd:dateTime"/>
+            <xsd:element name="startTimeinSec" type="xsd:int"/>
+            <xsd:element name="duration" type="xsd:int"/>
+            <xsd:element ref="tns:Appointment" maxOccurs="unbounded"
+                         minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Slot" type="tns:SlotType"/>
+</xsd:schema>

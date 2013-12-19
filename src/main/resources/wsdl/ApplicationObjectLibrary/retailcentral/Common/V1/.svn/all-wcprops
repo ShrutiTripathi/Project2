@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/projects/ott/!svn/ver/9598/trunk/socrates/socrates-customerid-service-unit/src/main/resources/wsdl/ApplicationObjectLibrary/retailcentral/Common/V1
+END
+CommonEntity.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/projects/ott/!svn/ver/9598/trunk/socrates/socrates-customerid-service-unit/src/main/resources/wsdl/ApplicationObjectLibrary/retailcentral/Common/V1/CommonEntity.xsd
+END
+Appointment.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/projects/ott/!svn/ver/9598/trunk/socrates/socrates-customerid-service-unit/src/main/resources/wsdl/ApplicationObjectLibrary/retailcentral/Common/V1/Appointment.xsd
+END

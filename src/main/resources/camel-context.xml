@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cxf="http://activemq.apache.org/camel/schema/cxfEndpoint"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://activemq.apache.org/camel/schema/spring http://activemq.apache.org/camel/schema/spring/camel-spring.xsd
+       http://activemq.apache.org/camel/schema/cxfEndpoint http://activemq.apache.org/camel/schema/cxfEndpoint/camel-cxf.xsd">
+
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<!-- <import resource="classpath:META-INF/cxf/cxf-servlet.xml" /> -->
+	<import resource="classpath:META-INF/cxf/cxf-extension-http-jetty.xml" />
+
+
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location"
+			value="file:/etc/specsavers/customeridservice.properties" />
+	</bean>
+
+	<camelContext trace="true"
+		xmlns="http://activemq.apache.org/camel/schema/spring">
+
+		<endpoint id="timerId" uri="timer://kickOff?period=${kickOffPeriod}" />
+
+		<route id="webserviceroute">
+
+			<from uri="ref:timerId" />
+			<try>
+				<setBody>
+					<constant>SELECT COUNT(*) as count from soa.customer_id_windows
+					</constant>
+				</setBody>
+				<to uri="jdbc:mysqlSOADataSource" />
+				<bean ref="thresholdCheckBean" method="process" />
+				<filter>
+					<ognl>request.headers.callWebService == 'yes'</ognl>
+					<to uri="cxf:bean:customerWebservice" />
+					<bean ref="customerIdSavingBean" method="process" />
+				</filter>
+				<catch>
+					<exception>java.lang.Exception</exception>
+					<process ref="exceptionHandler" />
+				</catch>
+			</try>
+		</route>
+	</camelContext>
+
+
+	<cxf:cxfEndpoint
+		xmlns:customer="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/wsdl/V1"
+		id="customerWebservice" address="${webserviceurl}" wsdlURL="${wsdlurl}"
+		endpointName="customer:ReferenceDataService_pt" serviceClass="${serviceclass}"
+		serviceName="customer:RCSRefDataServiceV1">
+		<cxf:inInterceptors>
+			<bean class="org.apache.cxf.interceptor.LoggingInInterceptor" />
+		</cxf:inInterceptors>
+		<cxf:outInterceptors>
+			<bean class="org.apache.cxf.interceptor.LoggingOutInterceptor" />
+			<bean class="org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor">
+				<constructor-arg>
+					<map>
+						<entry key="action" value="UsernameToken" />
+						<entry key="user" value="storeclient" />
+						<entry key="passwordType" value="PasswordText" />
+						<entry key="passwordCallbackRef" value-ref="myPasswordCallback"/>
+					</map>
+				</constructor-arg>
+			</bean>
+		</cxf:outInterceptors>
+	</cxf:cxfEndpoint>
+
+ <bean id="myPasswordCallback" class="com.specsavers.retailservice.beans.ClientPasswordCallBackEvent"/>
+ 
+	<bean id="mysqlSOADataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${user}" />
+		<property name="password" value="${password}" />
+	</bean>
+
+	<bean id="thresholdCheckBean" class="com.specsavers.retailservice.beans.ThresholdCheckBean">
+		<property name="thresholdLimit" value="${threshholdValue}" />
+		<!-- <property name="storeNumberParam" value="${storeNumber}"></property> -->
+		<property name="countParam" value="${count}"></property>
+		<property name="operationName" value="${operationName}"></property>
+	</bean>
+
+	<bean id="customerIdSavingBean" class="com.specsavers.retailservice.beans.CustomerIdSavingBean">
+		<property name="entityFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<bean id="exceptionHandler" class="com.specsavers.retailservice.beans.ExceptionLogger">
+	</bean>
+
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="developement" />
+	</bean>
+
+
+	<bean id="jpaTxManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<bean id="jpa" class="org.apache.camel.component.jpa.JpaComponent">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+		<!-- <property name="transactionManager" ref="transactionManager" /> -->
+	</bean>
+
+
+
+	<bean id="jpaTemplate" class="org.springframework.orm.jpa.JpaTemplate">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+
+
+	<bean id="transactionTemplate"
+		class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager" ref="transactionManager" />
+
+	</bean>
+
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+
+
+	<!-- <bean id="PROPAGATION_REQUIRED" class="org.apache.camel.spring.spi.SpringTransactionPolicy"> 
+		<property name="transactionManager" ref="transactionManager" /> </bean> -->
+
+</beans>

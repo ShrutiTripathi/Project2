@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/projects/ott/!svn/ver/9594/trunk/socrates/socrates-customerid-service-unit/src/test/java/com/specsavers/retailservice/beans
+END
+TestEndToEnd.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/projects/ott/!svn/ver/9594/trunk/socrates/socrates-customerid-service-unit/src/test/java/com/specsavers/retailservice/beans/TestEndToEnd.java
+END
+TestThresholdCheckBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/projects/ott/!svn/ver/8723/trunk/socrates/socrates-customerid-service-unit/src/test/java/com/specsavers/retailservice/beans/TestThresholdCheckBean.java
+END
+TestExceptionLogging.java
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/projects/ott/!svn/ver/9594/trunk/socrates/socrates-customerid-service-unit/src/test/java/com/specsavers/retailservice/beans/TestExceptionLogging.java
+END
+TestCustomerIdSavingBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/projects/ott/!svn/ver/9594/trunk/socrates/socrates-customerid-service-unit/src/test/java/com/specsavers/retailservice/beans/TestCustomerIdSavingBean.java
+END

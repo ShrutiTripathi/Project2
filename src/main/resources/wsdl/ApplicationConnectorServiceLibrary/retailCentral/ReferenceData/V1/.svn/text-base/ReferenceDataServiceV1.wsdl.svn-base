@@ -1,0 +1,161 @@
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:com="http://retailcentral.specsavers.com/objectLibrary/Common/V1"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:tns="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/wsdl/V1"
+	xmlns:gsdi="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/xsd/getStoreDiaryInformation/V1"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:va="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/xsd/validateAddress/V1"
+	xmlns:grrd="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/xsd/getRetailReferenceData/V1"
+	xmlns:guci="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/xsd/getUniqueCustomerID/V1"
+	xmlns:grs="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/xsd/getRetailStores/V1"
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+	targetNamespace="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/wsdl/V1">
+	<wsp:Policy xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" 
+		xmlns:orawsp="http://schemas.oracle.com/ws/2006/01/policy" xmlns="http://schemas.xmlsoap.org/ws/2004/09/policy" 
+		xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" orawsp:provides="{http://docs.oasis-open.org/ns/opencsa/sca/200903}authentication, 
+		{http://docs.oasis-open.org/ns/opencsa/sca/200903}clientAuthentication, {http://docs.oasis-open.org/ns/opencsa/sca/200903}clientAuthentication.message, 
+		{http://schemas.oracle.com/ws/2006/01/policy}token.usernamePassword" wsu:Id="wss_username_token_service_policy"> 
+		<sp:SupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"> 
+		<wsp:Policy> <sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient"> 
+		<wsp:Policy> <sp:WssUsernameToken10/> </wsp:Policy> </sp:UsernameToken> </wsp:Policy> 
+		</sp:SupportingTokens> </wsp:Policy>
+	<types>
+		<xsd:schema elementFormDefault="qualified">
+			<xsd:import
+				namespace="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/xsd/getRetailReferenceData/V1"
+				schemaLocation="../../../../ApplicationObjectLibrary/retailcentral/ReferenceData/getRetailReferenceData/V1/getRetailReferenceData.xsd" />
+			<xsd:import
+				namespace="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/xsd/getRetailStores/V1"
+				schemaLocation="../../../../ApplicationObjectLibrary/retailcentral/ReferenceData/getRetailStores/V1/getRetailStores.xsd" />
+			<xsd:import
+				namespace="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/xsd/getStoreDiaryInformation/V1"
+				schemaLocation="../../../../ApplicationObjectLibrary/retailcentral/ReferenceData/getStoreDiaryInformation/V1/getStoreDiaryInformation.xsd" />
+			<xsd:import
+				namespace="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/xsd/getUniqueCustomerID/V1"
+				schemaLocation="../../../../ApplicationObjectLibrary/retailcentral/ReferenceData/getUniqueCustomerID/V1/getUniqueCustomerID.xsd" />
+			<xsd:import
+				namespace="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/xsd/validateAddress/V1"
+				schemaLocation="../../../../ApplicationObjectLibrary/retailcentral/ReferenceData/validateAddress/V1/validateAddress.xsd" />
+		</xsd:schema>
+	</types>
+	<message name="GetRetailStoresRequestMsg">
+		<part name="GetRetailStoresRequest" element="grs:GetRetailStoresRequest" />
+	</message>
+	<message name="GetRetailStoresResponseMsg">
+		<part name="GetRetailStoresResponse" element="grs:GetRetailStoresResponse" />
+	</message>
+	<message name="GetStoreDiaryInformationRequestMsg">
+		<part name="GetStoreDiaryInformationRequest" element="gsdi:GetStoreDiaryInformationRequest" />
+	</message>
+	<message name="GetStoreDiaryInformationResponseMsg">
+		<part name="GetStoreDiaryInformationResponse" element="gsdi:GetStoreDiaryInformationResponse" />
+	</message>
+	<message name="GetRetailReferenceDataRequestMsg">
+		<part name="GetRetailReferenceDataRequest" element="grrd:GetRetailReferenceDataRequest" />
+	</message>
+	<message name="GetRetailReferenceDataResponseMsg">
+		<part name="GetRetailReferenceDataResponse" element="grrd:GetRetailReferenceDataResponse" />
+	</message>
+	<message name="ValidateAddressRequestMsg">
+		<part name="ValidateAddressRequest" element="va:ValidateAddressRequest" />
+	</message>
+	<message name="ValidateAddressResponseMsg">
+		<part name="ValidateAddressResponse" element="va:ValidateAddressResponse" />
+	</message>
+	<message name="GetUniqueCustomerIDRequestMsg">
+		<part name="GetUniqueCustomerIDRequest" element="guci:GetUniqueCustomerIDRequest" />
+	</message>
+	<message name="GetUniqueCustomerIDResponseMsg">
+		<part name="GetUniqueCustomerIDResponse" element="guci:GetUniqueCustomerIDResponse" />
+	</message>
+	<portType name="ReferenceDataService">
+		<operation name="getRetailStores">
+			<input message="tns:GetRetailStoresRequestMsg" />
+			<output message="tns:GetRetailStoresResponseMsg" />
+		</operation>
+		<operation name="getStoreDiaryInformation">
+			<input message="tns:GetStoreDiaryInformationRequestMsg" />
+			<output message="tns:GetStoreDiaryInformationResponseMsg" />
+		</operation>
+		<operation name="getRetailReferenceData">
+			<input message="tns:GetRetailReferenceDataRequestMsg" />
+			<output message="tns:GetRetailReferenceDataResponseMsg" />
+		</operation>
+		<operation name="validateAddress">
+			<input message="tns:ValidateAddressRequestMsg" />
+			<output message="tns:ValidateAddressResponseMsg" />
+		</operation>
+		<operation name="getUniqueCustomerID">
+			<input message="tns:GetUniqueCustomerIDRequestMsg" />
+			<output message="tns:GetUniqueCustomerIDResponseMsg" />
+		</operation>
+	</portType>
+	<binding name="ReferenceDataServiceBinding" type="tns:ReferenceDataService">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsp:PolicyReference xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+			URI="#wss_username_token_service_policy" wsdl:required="false" />
+		<operation name="getRetailStores">
+			<soap:operation style="document" soapAction="getRetailStores" />
+			<input>
+				<soap:body use="literal"
+					namespace="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/wsdl/V1" />
+			</input>
+			<output>
+				<soap:body use="literal"
+					namespace="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/wsdl/V1" />
+			</output>
+		</operation>
+		<operation name="getStoreDiaryInformation">
+			<soap:operation style="document" soapAction="getStoreDiaryInformation" />
+			<input>
+				<soap:body use="literal"
+					namespace="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/wsdl/V1" />
+			</input>
+			<output>
+				<soap:body use="literal"
+					namespace="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/wsdl/V1" />
+			</output>
+		</operation>
+		<operation name="getRetailReferenceData">
+			<soap:operation style="document" soapAction="getRetailReferenceData" />
+			<input>
+				<soap:body use="literal"
+					namespace="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/wsdl/V1" />
+			</input>
+			<output>
+				<soap:body use="literal"
+					namespace="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/wsdl/V1" />
+			</output>
+		</operation>
+		<operation name="validateAddress">
+			<soap:operation style="document" soapAction="validateAddress" />
+			<input>
+				<soap:body use="literal"
+					namespace="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/wsdl/V1" />
+			</input>
+			<output>
+				<soap:body use="literal"
+					namespace="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/wsdl/V1" />
+			</output>
+		</operation>
+		<operation name="getUniqueCustomerID">
+			<soap:operation style="document" soapAction="getUniqueCustomerID" />
+			<input>
+				<soap:body use="literal"
+					namespace="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/wsdl/V1" />
+			</input>
+			<output>
+				<soap:body use="literal"
+					namespace="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/wsdl/V1" />
+			</output>
+		</operation>
+	</binding>
+	<service name="RCSRefDataServiceV1">
+		<port name="ReferenceDataService_pt" binding="tns:ReferenceDataServiceBinding">
+			<soap:address
+				location="https://crpsoa1.uk.specsavers.com/soa-infra/services/RetailCentral/RCSRefDataServiceV1" />
+		</port>
+	</service>
+</definitions>

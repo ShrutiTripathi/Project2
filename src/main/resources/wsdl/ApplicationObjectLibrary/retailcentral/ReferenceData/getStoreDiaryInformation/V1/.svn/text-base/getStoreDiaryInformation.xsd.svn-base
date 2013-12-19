@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/xsd/getStoreDiaryInformation/V1"
+            targetNamespace="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/xsd/getStoreDiaryInformation/V1"
+            xmlns:tns="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/xsd/getStoreDiaryInformation/V1"
+            xmlns:common="http://retailcentral.specsavers.com/objectLibrary/Common/V1"
+            xmlns:comrefdata="http://retailcentral.specsavers.com/objectLibrary/Common/ReferenceData/V1"
+            xmlns:appt="http://retailcentral.specsavers.com/objectLibrary/Appointment/V1"
+            elementFormDefault="qualified">
+            
+  <xsd:import schemaLocation="../../../Common/V1/CommonEntity.xsd"
+              namespace="http://retailcentral.specsavers.com/objectLibrary/Common/V1"/>
+  <xsd:import schemaLocation="../../../Common/V1/Appointment.xsd"
+              namespace="http://retailcentral.specsavers.com/objectLibrary/Appointment/V1"/>  
+              <!--  -->
+  <!--
+  Get Store Diary Information Request
+  -->
+  <xsd:complexType name="GetStoreDiaryInformationRequestType">
+    <xsd:sequence>
+      <xsd:element name="storeNumber" type="xsd:unsignedInt"/>
+      <xsd:element ref="common:DateRange"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="GetStoreDiaryInformationRequest"
+               type="GetStoreDiaryInformationRequestType"/>
+  <!--
+  Get Store Diary Information Response
+  -->
+  <xsd:complexType name="GetStoreDiaryInformationResponseType">
+    <xsd:complexContent>
+      <xsd:extension base="common:AbstractResponseType">
+        <xsd:sequence>
+          <xsd:element name="Result" minOccurs="0">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element ref="appt:Room" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element ref="common:BlockedDay" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element ref="common:TradingDay" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="DiaryDateRange" type="common:DateRangeType"
+                             maxOccurs="unbounded"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="GetStoreDiaryInformationResponse"
+               type="tns:GetStoreDiaryInformationResponseType"/>
+</xsd:schema>

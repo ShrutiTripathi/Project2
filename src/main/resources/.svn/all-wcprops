@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/projects/ott/!svn/ver/9601/trunk/socrates/socrates-customerid-service-unit/src/main/resources
+END
+test-camel-context.xml
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/projects/ott/!svn/ver/8683/trunk/socrates/socrates-customerid-service-unit/src/main/resources/test-camel-context.xml
+END
+camel-context.xml
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/projects/ott/!svn/ver/9594/trunk/socrates/socrates-customerid-service-unit/src/main/resources/camel-context.xml
+END
+https-config.xml
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/projects/ott/!svn/ver/9599/trunk/socrates/socrates-customerid-service-unit/src/main/resources/https-config.xml
+END
+customeridservice.properties
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/projects/ott/!svn/ver/9601/trunk/socrates/socrates-customerid-service-unit/src/main/resources/customeridservice.properties
+END
+log4j.properties
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/projects/ott/!svn/ver/8419/trunk/socrates/socrates-customerid-service-unit/src/main/resources/log4j.properties
+END
+DemoTrust.jks
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/projects/ott/!svn/ver/9599/trunk/socrates/socrates-customerid-service-unit/src/main/resources/DemoTrust.jks
+END
+https-client.xml
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/projects/ott/!svn/ver/9599/trunk/socrates/socrates-customerid-service-unit/src/main/resources/https-client.xml
+END
+servicemix.xml
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/projects/ott/!svn/ver/9594/trunk/socrates/socrates-customerid-service-unit/src/main/resources/servicemix.xml
+END

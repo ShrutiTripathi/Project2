@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/projects/ott/!svn/ver/9599/trunk/socrates/socrates-customerid-service-unit/src/main/java/com/specsavers/retailservice/beans
+END
+ClientPasswordCallBackEvent.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projects/ott/!svn/ver/9599/trunk/socrates/socrates-customerid-service-unit/src/main/java/com/specsavers/retailservice/beans/ClientPasswordCallBackEvent.java
+END
+ThresholdCheckBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/projects/ott/!svn/ver/9594/trunk/socrates/socrates-customerid-service-unit/src/main/java/com/specsavers/retailservice/beans/ThresholdCheckBean.java
+END
+CustomerIDConstants.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/projects/ott/!svn/ver/9594/trunk/socrates/socrates-customerid-service-unit/src/main/java/com/specsavers/retailservice/beans/CustomerIDConstants.java
+END
+CustomerIdSavingBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/projects/ott/!svn/ver/9594/trunk/socrates/socrates-customerid-service-unit/src/main/java/com/specsavers/retailservice/beans/CustomerIdSavingBean.java
+END
+ExceptionLogger.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/projects/ott/!svn/ver/9594/trunk/socrates/socrates-customerid-service-unit/src/main/java/com/specsavers/retailservice/beans/ExceptionLogger.java
+END

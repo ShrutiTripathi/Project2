@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns:sm="http://servicemix.apache.org/config/1.0"
+	xmlns:eip="http://servicemix.apache.org/eip/1.0" xmlns:jms="http://servicemix.apache.org/jms/1.0">
+
+	<!-- <bean class="com.sun.xml.bind.v2.ContextFactory"/> -->
+
+	<import resource="classpath:camel-context.xml" />
+	<import resource="classpath:https-client.xml"/> 
+	<sm:serviceunit id="jbi">
+
+		<sm:activationSpecs>
+
+			<sm:activationSpec componentName="traceInputCustomerID"
+				service="traceIn">
+				<sm:component>
+					<bean class="org.apache.servicemix.components.util.TraceComponent" />
+				</sm:component>
+			</sm:activationSpec>
+
+
+			<sm:activationSpec componentName="traceOuputCustomerID"
+				service="traceOutput">
+				<sm:component>
+					<bean class="org.apache.servicemix.components.util.TraceComponent" />
+				</sm:component>
+			</sm:activationSpec>
+
+		</sm:activationSpecs>
+	</sm:serviceunit>
+</beans>

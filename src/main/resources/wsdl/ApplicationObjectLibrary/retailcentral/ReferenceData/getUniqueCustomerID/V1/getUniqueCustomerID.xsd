@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/xsd/getUniqueCustomerID/V1"
+            targetNamespace="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/xsd/getUniqueCustomerID/V1"
+            xmlns:tns="http://retailcentral.specsavers.com/serviceLibrary/ReferenceData/xsd/getUniqueCustomerID/V1"
+            xmlns:common="http://retailcentral.specsavers.com/objectLibrary/Common/V1"
+            elementFormDefault="qualified">
+  <xsd:import schemaLocation="../../../Common/V1/CommonEntity.xsd"
+              namespace="http://retailcentral.specsavers.com/objectLibrary/Common/V1"/>
+              <!--  -->
+  <!--
+  Get Unique CustomerID Request
+  -->
+  <xsd:complexType name="GetUniqueCustomerIDRequestType">
+    <xsd:sequence>
+      <xsd:element name="count" type="xsd:unsignedInt"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="GetUniqueCustomerIDRequest"
+               type="GetUniqueCustomerIDRequestType"/>
+  <!--
+  Get Unique CustomerID Response
+  -->
+  <xsd:complexType name="GetUniqueCustomerIDResponseType">
+    <xsd:complexContent>
+      <xsd:extension base="common:AbstractResponseType">
+        <xsd:sequence>
+          <xsd:element name="Result" minOccurs="0">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="startId" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="endId" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="GetUniqueCustomerIDResponse"
+               type="tns:GetUniqueCustomerIDResponseType"/>
+</xsd:schema>

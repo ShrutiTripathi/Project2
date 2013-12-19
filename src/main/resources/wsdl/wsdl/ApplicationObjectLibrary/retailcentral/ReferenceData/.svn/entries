@@ -1,0 +1,43 @@
+10
+
+dir
+9603
+http://svn/projects/ott/trunk/socrates/socrates-customerid-service-unit/src/main/resources/wsdl/wsdl/ApplicationObjectLibrary/retailcentral/ReferenceData
+http://svn/projects/ott
+
+
+
+2013-09-10T10:21:18.789296Z
+9598
+shrutit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+abb075a3-b15d-0410-af9e-ebe6ad75aa9a
+
+validateAddress
+dir
+
+getRetailStores
+dir
+
+getUniqueCustomerID
+dir
+
+getRetailReferenceData
+dir
+
+getStoreDiaryInformation
+dir
+
